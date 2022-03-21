@@ -21,7 +21,7 @@ participants = [
 ]
 
 # Getting a single value, e.g. RT of 4th trial from 2nd participant
-print(participants[1, 3])
+print(participants[1, 3]) #this one gives me error 'TypeError: list indices must be integers or slices, not tuple'
 
 # Comparing all of them is cleaner, but still slightly cumbersome
 for participant in participants:
@@ -37,7 +37,7 @@ import numpy as np  # noqa: E402
 
 participants_array = np.array(participants)  # Convert our list of lists to an array
 print(participants_array[:, 3])  # It's so simple now to compare reaction times!
-print(participants_array[1, :])  # Or to get all RTs from a single participant.
+print(participants_array[0, 1:3])  # Or to get all RTs from a single participant.
 
 # What about participant RT means and stdevs?
 print(participants_array.mean(axis=1), participants_array.std(axis=1))
@@ -51,3 +51,33 @@ print(participants_array.mean(axis=0))
 #      - the three separate RT lists (hint: you may need to use several for-loops)
 #      - the participants list of lists (hint: two for-loops should be enough here!)
 #      - the participants array in numpy (hint: use np.log instead of Python's log function)
+
+# 1)
+import math
+from math import log
+
+#  2a)
+#participant1
+for RT in list(participant_1_RTs): 
+    print(math.log10(RT))
+#participant2
+for RT in list(participant_2_RTs): 
+    print(math.log10(RT))
+
+#participant3
+for RT in list(participant_3_RTs): 
+    print(math.log10(RT))
+
+# 2b
+for participant in participants: 
+    for RT in participant: 
+        print(math.log10(RT))
+
+#2c
+a = np.log10(participants_array)
+print(a)
+
+
+
+
+ 
